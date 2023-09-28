@@ -1,0 +1,49 @@
+/*
+Ques - What is Use Context in react ?
+
+Ans - useContext" is a hook that allows you to access the data stored in the context of your application. 
+      Context in React is a way to share data between components without having to pass props manually at
+      every level of the component tree. 
+      
+      How "useContext" works:
+      
+      
+      Creating a Context: First, you need to create a context using the React.createContext() function. 
+                          This creates a context object that has a Provider component and a Consumer component.
+                          
+                          
+                          
+                          
+      Providing Context: You wrap the part of your component tree where you want to share data with a Context.
+                         Provider component. This provider component takes a value prop, which is the data you 
+                         want to share
+                         
+     Consuming Context: To access the data from the context, you use the useContext hook in a child component of 
+                        the provider. This hook takes the context object you created and returns the current context value
+                        
+                        */
+
+import React, { createContext, useContext } from "react";
+
+// Create a context
+const MyContext = createContext();
+
+// Provide the context data in a parent component
+function App() {
+  const contextData = "Hello from Context!";
+
+  return (
+    <MyContext.Provider value={contextData}>
+      <ChildComponent />
+    </MyContext.Provider>
+  );
+}
+
+// Consume the context data in a child component
+function ChildComponent() {
+  const dataFromContext = useContext(MyContext);
+
+  return <div>{dataFromContext}</div>;
+}
+
+export default App;
